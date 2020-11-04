@@ -4,6 +4,10 @@
 
 A interface gráfica com o usuário será implementada usando o framework [Angular](https://angular.io/docs).
 
+O applicativo pode ser acesso pelo seguinte endereço: https://thankful-island-0c8d04f10.azurestaticapps.net
+
+O código fonte está no Github: https://github.com/asmmartins/libraryapp
+
 #### Arquitetura
 
 A inteface é modularizada de acordo com os casos de uso.
