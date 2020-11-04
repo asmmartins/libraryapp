@@ -10,12 +10,12 @@ import { IAuthor } from './author';
 })
 export class AuthorService {
 
-  private bookUrl = 'https://asmlibraryapi.azurewebsites.net/authors';
+  private AuthorUrl = 'https://asmlibraryapi.azurewebsites.net/authors';
 
   constructor(private http: HttpClient) { }
 
   getAuthors(): Observable<IAuthor[]> {
-    return this.http.get<IAuthor[]>(this.bookUrl)
+    return this.http.get<IAuthor[]>(this.AuthorUrl)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
