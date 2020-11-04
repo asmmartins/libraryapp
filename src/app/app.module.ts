@@ -8,6 +8,8 @@ import { WelcomeComponent } from './home/welcome.component';
 import { BookModule } from './books/book.module';
 import { AuthorModule } from './authors/author.module';
 import { SubjectModule } from './subjects/subject.module';
+import { AuthorBookModule } from './authors-books/authorbook.module';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { SubjectModule } from './subjects/subject.module';
     ]),    
     BookModule,
     AuthorModule,
-    SubjectModule
+    SubjectModule,
+    AuthorBookModule
   ],
   bootstrap: [AppComponent]
 })
