@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { BookModule } from './books/book.module';
+import { AuthorModule } from './authors/author.module';
+import { SubjectModule } from './subjects/subject.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { BookModule } from './books/book.module';
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),    
-    BookModule
+    BookModule,
+    AuthorModule,
+    SubjectModule
   ],
   bootstrap: [AppComponent]
 })

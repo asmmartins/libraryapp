@@ -1,0 +1,43 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-2'>Filtro:</div>
+      <div class='col-md-4'>
+        <input type='text'
+               [(ngModel)]='listFilter' />
+      </div>
+    </div>
+    <div class='row'
+         *ngIf='listFilter'>
+      <div class='col-md-6'>
+        <h4>{{listFilter}}</h4>
+      </div>
+    </div>
+    <div class='table-responsive'>
+      <table class='table'
+             *ngIf='authors && authors.length'>
+        <thead>
+          <tr>            
+            <th>Nome</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let author of filteredAuthors'>            
+            <td>
+              <a [routerLink]="['/authors', author.id]">
+                {{ author.name }}
+              </a>
+            </td>            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
