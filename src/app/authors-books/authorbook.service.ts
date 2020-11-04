@@ -3,29 +3,22 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import { IAuthor } from './author';
+import { IAuthorBook } from './authorbook';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorService {
+export class AuthorBookService {
 
-  private AuthorUrl = 'https://asmlibraryapi.azurewebsites.net/authors';
+  private bookUrl = 'https://asmlibraryapi.azurewebsites.net/author-books';
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(): Observable<IAuthor[]> {
-    return this.http.get<IAuthor[]>(this.AuthorUrl)
+  getAuthorsBooks(): Observable<IAuthorBook[]> {
+    return this.http.get<IAuthorBook[]>(this.bookUrl)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
-      );
-  }
-
-  getAuthor(id: string): Observable<IAuthor | undefined> {
-    return this.getAuthors()
-      .pipe(
-        map((authors: IAuthor[]) => authors.find(p => p.id === id))
       );
   }
 
