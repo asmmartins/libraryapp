@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     AuthorDetailComponent,    
     AuthorCreateComponent
   ],
-  imports: [
+  imports: [    
     RouterModule.forChild([
       { path: 'authors', component: AuthorListComponent },
       {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { IAuthor } from './author';
 
@@ -10,35 +10,50 @@ import { IAuthor } from './author';
 })
 export class AuthorService {
 
-  private AuthorUrl = 'https://asmlibraryapi.azurewebsites.net/authors';
+  private authorUrl = 'https://asmlibraryapi.azurewebsites.net/authors';
 
   constructor(private http: HttpClient) { }
 
   getAuthors(): Observable<IAuthor[]> {
-    return this.http.get<IAuthor[]>(this.AuthorUrl)
-      .pipe(
-        tap(data => console.log('All: ' + JSON.stringify(data))),
+    return this.http.get<IAuthor[]>(this.authorUrl)
+      .pipe(        
         catchError(this.handleError)
       );
   }
 
   getAuthor(id: string): Observable<IAuthor | undefined> {
-    return this.getAuthors()
+    return this.http.get<IAuthor>(`${ this.authorUrl }/${ id }`)
       .pipe(
-        map((authors: IAuthor[]) => authors.find(p => p.id === id))
+        catchError(this.handleError)
       );
   }
 
-  private handleError(err: HttpErrorResponse): Observable<never> {
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
+  createAuthor(author: IAuthor) : void {
+    this.http.post(this.authorUrl, author)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateAuthor(author: IAuthor) : void {
+    this.http.put(`${ this.authorUrl }/${ author.id }`, author)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  removeAuthor(id: string) : void {
+    this.http.delete(`${ this.authorUrl }/${ id }`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(err: HttpErrorResponse): Observable<never> {    
     let errorMessage = '';
-    if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
+    if (err.error instanceof ErrorEvent) {      
       errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
+    } else {      
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);
