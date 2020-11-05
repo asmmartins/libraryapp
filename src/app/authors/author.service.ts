@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { IAuthor } from './author';
 
@@ -18,7 +19,8 @@ export class AuthorService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) {}
 
   getAuthors(): Observable<IAuthor[]> {
     return this.http.get<IAuthor[]>(this.authorUrl)
@@ -37,7 +39,7 @@ export class AuthorService {
   createAuthor(author: IAuthor) : void {
     this.http.post(this.authorUrl, author, this.httpOptions)      
       .subscribe(  
-        next => this.handleNext(next),          
+        next => this.handleNext(),          
         catchError(this.handleError)        
       );
   }
@@ -45,8 +47,8 @@ export class AuthorService {
   updateAuthor(author: IAuthor) : void {        
     this.http.put(`${ this.authorUrl }/${ author.id }`, author, this.httpOptions)
       .subscribe(    
-        next => this.handleNext(next),
-        catchError(this.handleError)
+        next => this.handleNext(),        
+        catchError(this.handleError)        
       );
   }
 
@@ -57,8 +59,8 @@ export class AuthorService {
       );
   }
 
-  private handleNext(next: object) : void { 
-    this.getAuthors();   
+  private handleNext() : void { 
+    this.router.navigate(['/authors']);
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {    

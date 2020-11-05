@@ -24,8 +24,7 @@ export class AuthorAddComponent implements OnInit {
 
   onSubmit(): void {        
     if (this.author) {                              
-      this.authorService.createAuthor(this.author); 
-      this.onBack();     
+      this.authorService.createAuthor(this.author);      
     }
   }
 
