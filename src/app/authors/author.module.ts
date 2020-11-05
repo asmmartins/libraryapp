@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AuthorListComponent } from './author-list.component';
 import { AuthorDetailComponent } from './author-detail.component';
 import { AuthorEditComponent } from './author-edit.component';
+import { AuthorAddComponent } from './author-add.component';
 import { RouterModule } from '@angular/router';
 import { AuthorDetailGuard } from './author-detail.guard';
 import { AuthorEditGuard } from './author-edit.guard';
@@ -11,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AuthorListComponent,
     AuthorDetailComponent,    
-    AuthorEditComponent
+    AuthorEditComponent,
+    AuthorAddComponent
   ],
   imports: [    
     RouterModule.forChild([
@@ -25,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
         path: 'edit-authors/:id',
         canActivate: [AuthorEditGuard],
         component: AuthorEditComponent
-      }
+      },
+      { path: 'add-authors', component: AuthorAddComponent }
     ]),
     SharedModule
   ]
