@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AuthorListComponent } from './author-list.component';
-import { AuthorDetailComponent } from './author-detail.component';
-import { AuthorEditComponent } from './author-edit.component';
-import { AuthorAddComponent } from './author-add.component';
+import { AuthorListComponent } from './list/author-list.component';
+import { AuthorDetailComponent } from './detail/author-detail.component';
+import { AuthorEditComponent } from './edit/author-edit.component';
+import { AuthorAddComponent } from './add/author-add.component';
 import { RouterModule } from '@angular/router';
-import { AuthorDetailGuard } from './author-detail.guard';
-import { AuthorEditGuard } from './author-edit.guard';
+import { AuthorDetailGuard } from './detail/author-detail.guard';
+import { AuthorEditGuard } from './edit/author-edit.guard';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
