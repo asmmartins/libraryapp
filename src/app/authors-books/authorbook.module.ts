@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AuthorBookListComponent } from './authorbook-list.component';
+import { AuthorBookListComponent } from './list/authorbook-list.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
