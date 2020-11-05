@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'pm-root',
   template: `
-    <nav class='navbar navbar-expand navbar-light bg-light'>
-        <a class='navbar-brand'>{{pageTitle}}</a>
+    <nav class='navbar navbar-expand navbar-light bg-light'>        
         <ul class='nav nav-pills'>
           <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/welcome']">Home</a></li>
           <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/authors']">Autores</a></li>          
@@ -19,6 +18,5 @@ import { Component } from '@angular/core';
     `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  pageTitle = 'Biblioteca';
+export class AppComponent {  
 }

@@ -9,7 +9,7 @@ import { AuthorService } from './author.service';
 })
 export class AuthorListComponent implements OnInit {
 
-  pageTitle = 'Livros';
+  pageTitle = 'Autores';
   imageWidth = 50;
   imageMargin = 2;
   showImage = false;
