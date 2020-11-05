@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { ISubject } from './subject';
 
@@ -12,7 +13,13 @@ export class SubjectService {
 
   private subjectUrl = 'https://asmlibraryapi.azurewebsites.net/subjects';
 
-  constructor(private http: HttpClient) { }
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   getSubjects(): Observable<ISubject[]> {
     return this.http.get<ISubject[]>(this.subjectUrl)
@@ -26,6 +33,33 @@ export class SubjectService {
       .pipe(
         map((subjects: ISubject[]) => subjects.find(p => p.id === id))
       );
+  }
+
+  createSubject(subject: ISubject) : void {
+    this.http.post(this.subjectUrl, subject, this.httpOptions)      
+      .subscribe(  
+        next => this.handleNext(),          
+        catchError(this.handleError)        
+      );
+  }
+
+  updateSubject(subject: ISubject) : void {        
+    this.http.put(`${ this.subjectUrl }/${ subject.id }`, subject, this.httpOptions)
+      .subscribe(    
+        next => this.handleNext(),        
+        catchError(this.handleError)        
+      );
+  }
+
+  removeSubject(id: string) : void {
+    this.http.delete(`${ this.subjectUrl }/${ id }`)
+      .subscribe(        
+        catchError(this.handleError)
+      );
+  }
+
+  private handleNext() : void { 
+    this.router.navigate(['/subjects']);
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {    
