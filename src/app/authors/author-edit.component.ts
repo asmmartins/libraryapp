@@ -5,12 +5,12 @@ import { IAuthor } from './author';
 import { AuthorService } from './author.service';
 
 @Component({  
-  templateUrl: './author-create.component.html',
-  styleUrls: ['./author-create.component.css']
+  templateUrl: './author-edit.component.html',
+  styleUrls: ['./author-edit.component.css']
 })
-export class AuthorCreateComponent implements OnInit {
+export class AuthorEditComponent implements OnInit {
 
-  pageTitle = 'Livro';
+  pageTitle = 'Autor';
   errorMessage = '';
   author: IAuthor | undefined;  
 
@@ -33,11 +33,9 @@ export class AuthorCreateComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {    
-    console.log(this.author);
-    if (this.author) {                        
-      //this.authorService.createAuthor(createAuthor);
-    } else {      
+  onSubmit(): void {        
+    if (this.author) {                              
+      this.authorService.updateAuthor(this.author);      
     }
   }
 

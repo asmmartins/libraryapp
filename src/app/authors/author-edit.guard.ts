@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorCreateGuard implements CanActivate {
+export class AuthorEditGuard implements CanActivate {
 
   constructor(private router: Router) { }
 
@@ -14,7 +14,7 @@ export class AuthorCreateGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {    
     const id = next.paramMap.get('id');    
     if (!id) {      
-      this.router.navigate(['/create-authors']);
+      this.router.navigate(['/edit-authors']);
       return false;
     }
     return true;

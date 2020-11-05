@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthorCreateGuard } from './author-create.guard';
+import { AuthorEditGuard } from './author-edit.guard';
 
-describe('AuthorCreateGuard', () => {
-  let guard: AuthorCreateGuard;
+describe('AuthorEditGuard', () => {
+  let guard: AuthorEditGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(AuthorCreateGuard);
+    guard = TestBed.inject(AuthorEditGuard);
   });
 
   it('should be created', () => {

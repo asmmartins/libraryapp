@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -11,6 +11,12 @@ import { IAuthor } from './author';
 export class AuthorService {
 
   private authorUrl = 'https://asmlibraryapi.azurewebsites.net/authors';
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -29,27 +35,28 @@ export class AuthorService {
   }
 
   createAuthor(author: IAuthor) : void {
-    this.http.post(this.authorUrl, author)
-      .pipe(
+    this.http.post(this.authorUrl, author, this.httpOptions)      
+      .subscribe(        
         catchError(this.handleError)
       );
   }
 
-  updateAuthor(author: IAuthor) : void {
-    this.http.put(`${ this.authorUrl }/${ author.id }`, author)
-      .pipe(
+  updateAuthor(author: IAuthor) : void {        
+    this.http.put(`${ this.authorUrl }/${ author.id }`, author, this.httpOptions)
+      .subscribe(                
         catchError(this.handleError)
       );
   }
 
   removeAuthor(id: string) : void {
     this.http.delete(`${ this.authorUrl }/${ id }`)
-      .pipe(
+      .subscribe(        
         catchError(this.handleError)
       );
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {    
+     
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {      
       errorMessage = `An error occurred: ${err.error.message}`;
