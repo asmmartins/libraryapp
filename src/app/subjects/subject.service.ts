@@ -16,8 +16,7 @@ export class SubjectService {
 
   getSubjects(): Observable<ISubject[]> {
     return this.http.get<ISubject[]>(this.subjectUrl)
-      .pipe(
-        tap(data => console.log('All: ' + JSON.stringify(data))),
+      .pipe(        
         catchError(this.handleError)
       );
   }
