@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { SubjectListComponent } from './subject-list.component';
-import { SubjectDetailComponent } from './subject-detail.component';
+import { SubjectListComponent } from './list/subject-list.component';
+import { SubjectDetailComponent } from './detail/subject-detail.component';
 import { RouterModule } from '@angular/router';
-import { SubjectDetailGuard } from './subject-detail.guard';
+import { SubjectDetailGuard } from './detail/subject-detail.guard';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
