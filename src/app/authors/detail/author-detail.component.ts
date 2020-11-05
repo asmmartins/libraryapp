@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { IAuthor } from './author';
-import { AuthorService } from './author.service';
+import { IAuthor } from '../author';
+import { AuthorService } from '../author.service';
 
 @Component({
   templateUrl: './author-detail.component.html',

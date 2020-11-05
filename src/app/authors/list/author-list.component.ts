@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IAuthor } from './author';
-import { AuthorService } from './author.service';
+import { IAuthor } from '../author';
+import { AuthorService } from '../author.service';
 
 @Component({
   templateUrl: './author-list.component.html',

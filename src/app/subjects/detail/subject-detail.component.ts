@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ISubject } from './subject';
-import { SubjectService } from './subject.service';
+import { ISubject } from '../subject';
+import { SubjectService } from '../subject.service';
 
 @Component({
   templateUrl: './subject-detail.component.html',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IBook } from './book';
-import { BookService } from './book.service';
+import { IBook } from '../book';
+import { BookService } from '../book.service';
 
 @Component({
   templateUrl: './book-list.component.html',

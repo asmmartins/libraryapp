@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { IBook } from './book';
-import { BookService } from './book.service';
+import { IBook } from '../book';
+import { BookService } from '../book.service';
 
 @Component({
   templateUrl: './book-detail.component.html',

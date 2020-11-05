@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ISubject } from './subject';
-import { SubjectService } from './subject.service';
+import { ISubject } from '../subject';
+import { SubjectService } from '../subject.service';
 
 @Component({
   templateUrl: './subject-list.component.html',
