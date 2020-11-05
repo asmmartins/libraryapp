@@ -35,7 +35,8 @@ export class AuthorEditComponent implements OnInit {
 
   onSubmit(): void {        
     if (this.author) {                              
-      this.authorService.updateAuthor(this.author);      
+      this.authorService.updateAuthor(this.author); 
+      this.onBack();     
     }
   }
 

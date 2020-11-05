@@ -36,14 +36,16 @@ export class AuthorService {
 
   createAuthor(author: IAuthor) : void {
     this.http.post(this.authorUrl, author, this.httpOptions)      
-      .subscribe(        
-        catchError(this.handleError)
+      .subscribe(  
+        next => this.handleNext(next),          
+        catchError(this.handleError)        
       );
   }
 
   updateAuthor(author: IAuthor) : void {        
     this.http.put(`${ this.authorUrl }/${ author.id }`, author, this.httpOptions)
-      .subscribe(                
+      .subscribe(    
+        next => this.handleNext(next),
         catchError(this.handleError)
       );
   }
@@ -53,6 +55,10 @@ export class AuthorService {
       .subscribe(        
         catchError(this.handleError)
       );
+  }
+
+  private handleNext(next: object) : void { 
+    this.getAuthors();   
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {    
