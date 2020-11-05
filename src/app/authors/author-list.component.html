@@ -27,7 +27,7 @@
         <tbody>
           <tr *ngFor='let author of filteredAuthors'>            
             <td>
-              <a [routerLink]="['/authors', author.id]">
+              <a [routerLink]="['/edit-authors', author.id]">
                 {{ author.name }}
               </a>
             </td>            

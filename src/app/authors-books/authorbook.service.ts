@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { IAuthorBook } from './authorbook';
 
@@ -16,22 +16,16 @@ export class AuthorBookService {
 
   getAuthorsBooks(): Observable<IAuthorBook[]> {
     return this.http.get<IAuthorBook[]>(this.bookUrl)
-      .pipe(
-        tap(data => console.log('All: ' + JSON.stringify(data))),
+      .pipe(        
         catchError(this.handleError)
       );
   }
 
-  private handleError(err: HttpErrorResponse): Observable<never> {
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
+  private handleError(err: HttpErrorResponse): Observable<never> {    
     let errorMessage = '';
-    if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
+    if (err.error instanceof ErrorEvent) {      
       errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
+    } else {      
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);

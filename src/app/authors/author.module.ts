@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { AuthorListComponent } from './author-list.component';
 import { AuthorDetailComponent } from './author-detail.component';
-import { AuthorCreateComponent } from './author-create.component';
+import { AuthorEditComponent } from './author-edit.component';
 import { RouterModule } from '@angular/router';
 import { AuthorDetailGuard } from './author-detail.guard';
-import { AuthorCreateGuard } from './author-create.guard';
+import { AuthorEditGuard } from './author-edit.guard';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     AuthorListComponent,
     AuthorDetailComponent,    
-    AuthorCreateComponent
+    AuthorEditComponent
   ],
-  imports: [
+  imports: [    
     RouterModule.forChild([
       { path: 'authors', component: AuthorListComponent },
       {
@@ -22,9 +22,9 @@ import { SharedModule } from '../shared/shared.module';
         component: AuthorDetailComponent
       },
       {
-        path: 'create-authors/:id',
-        canActivate: [AuthorCreateGuard],
-        component: AuthorCreateComponent
+        path: 'edit-authors/:id',
+        canActivate: [AuthorEditGuard],
+        component: AuthorEditComponent
       }
     ]),
     SharedModule

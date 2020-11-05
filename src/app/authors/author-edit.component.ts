@@ -4,24 +4,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IAuthor } from './author';
 import { AuthorService } from './author.service';
 
-@Component({
-  templateUrl: './author-create.component.html',
-  styleUrls: ['./author-create.component.css']
+@Component({  
+  templateUrl: './author-edit.component.html',
+  styleUrls: ['./author-edit.component.css']
 })
-export class AuthorCreateComponent implements OnInit {
+export class AuthorEditComponent implements OnInit {
 
-  pageTitle = 'Livro';
+  pageTitle = 'Autor';
   errorMessage = '';
-  author: IAuthor | undefined;
+  author: IAuthor | undefined;  
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private authorService: AuthorService) {
   }
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
+  ngOnInit(): void {    
+    const id = this.route.snapshot.paramMap.get('id');    
     if (id) {            
       this.getAuthor(id);      
     }
@@ -32,6 +31,13 @@ export class AuthorCreateComponent implements OnInit {
       next: author => this.author = author,
       error: err => this.errorMessage = err
     });
+  }
+
+  onSubmit(): void {        
+    if (this.author) {                              
+      this.authorService.updateAuthor(this.author); 
+      this.onBack();     
+    }
   }
 
   onBack(): void {
