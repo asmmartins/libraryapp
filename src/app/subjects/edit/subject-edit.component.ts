@@ -34,6 +34,12 @@ export class SubjectEditComponent implements OnInit {
     });
   }
 
+  onSubmit(): void {        
+    if (this.subject) {                              
+      this.subjectService.updateSubject(this.subject);        
+    }
+  }
+
   onBack(): void {
     this.router.navigate(['/subjects']);
   }
