@@ -27,7 +27,7 @@ export class SubjectListComponent implements OnInit {
   filteredSubjects: ISubject[] = [];
   subjects: ISubject[] = [];
 
-  constructor(private SubjectService: SubjectService) { }
+  constructor(private subjectService: SubjectService) { }
 
   onRatingClicked(message: string): void {
     this.pageTitle = 'Assuntos: ' + message;
@@ -44,7 +44,7 @@ export class SubjectListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.SubjectService.getSubjects().subscribe({
+    this.subjectService.getSubjects().subscribe({
       next: subjects => {
         this.subjects = subjects;
         this.filteredSubjects = this.subjects;

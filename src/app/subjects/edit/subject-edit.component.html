@@ -1,17 +1,19 @@
-<div class='card'>
+<div class='card'
+     *ngIf='subject'>
   <div class='card-header'>
-    {{pageTitle}}
+    {{pageTitle + ': ' + subject.description}}
+    <button [routerLink]="['/add-subjects'] " class="btn btn-primary float-right">+</button> 
   </div>
 
   <div class='card-body'>
     <form #subjectForm="ngForm"> 
       <div class="form-group">
-        <label for="descriptionInput">Descrição</label>
-        <input type="description" class="form-control" id="descriptionInput" aria-describedby="descriptionHelp" placeholder="Digite o assunto" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}">
+        <label for="descriptionInput">Nome</label>
+        <input type="description" class="form-control" id="descriptionInput" aria-describedby="descriptionHelp" placeholder="Digite o nome" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}">
         <small id="descriptionHelp" class="form-text text-muted">Digite o assunto do livro.</small>
       </div>               
       <button type="button" class="btn btn-primary float-right" (click)="onSubmit()">Salvar</button>
-    </form>
+    </form>    
   </div>
 
   <div class='card-footer'>
