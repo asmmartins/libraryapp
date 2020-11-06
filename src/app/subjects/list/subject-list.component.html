@@ -28,7 +28,7 @@
         <tbody>
           <tr *ngFor='let subject of filteredSubjects'>            
             <td>
-              <a [routerLink]="['/subjects', subject.id]">
+              <a [routerLink]="['/edit-subjects', subject.id]">
                 {{ subject.description }}
               </a>
             </td>                      
