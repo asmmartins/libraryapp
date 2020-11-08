@@ -8,11 +8,14 @@
   <div class='card-body'>
     <form #subjectForm="ngForm"> 
       <div class="form-group">
-        <label for="descriptionInput">Nome</label>
-        <input type="description" class="form-control" id="descriptionInput" aria-describedby="descriptionHelp" placeholder="Digite o nome" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}">
+        <label for="description">Descrição</label>
+        <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" placeholder="Digite o assunto" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}" #description="ngModel" required maxlength="20">
         <small id="descriptionHelp" class="form-text text-muted">Digite o assunto do livro.</small>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+          <smal *ngIf="description.errors.required">Assunto é obrigatório</smal>      
+        </div>     
       </div>               
-      <button type="button" class="btn btn-primary float-right" (click)="onSubmit()">Salvar</button>
+      <button type="button" class="btn btn-primary float-right" (click)="onSubmit()" [disabled]="!description.valid">Salvar</button>
     </form>    
   </div>
 
