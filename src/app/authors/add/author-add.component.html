@@ -6,11 +6,14 @@
   <div class='card-body'>
     <form #authorForm="ngForm"> 
       <div class="form-group">
-        <label for="nameInput">Nome</label>
-        <input type="name" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="Digite o nome" [(ngModel)]="author.name" [ngModelOptions]="{standalone: true}">
+        <label for="name">Nome</label>
+        <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Digite o nome" [(ngModel)]="author.name" [ngModelOptions]="{standalone: true}" #name="ngModel" required maxlength="40">
         <small id="nameHelp" class="form-text text-muted">Digite o nome do author do livro.</small>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <smal *ngIf="name.errors.required">Autor é obrigatório</smal>      
+        </div>
       </div>               
-      <button type="button" class="btn btn-primary float-right" (click)="onSubmit()">Salvar</button>
+      <button type="button" class="btn btn-primary float-right" (click)="onSubmit()" [disabled]="!name.valid">Salvar</button>
     </form>    
   </div>
 
