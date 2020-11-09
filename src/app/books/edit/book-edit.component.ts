@@ -9,7 +9,6 @@ import { BookService } from '../book.service';
 import { AuthorService } from '../../authors/author.service';
 import { SubjectService } from '../../subjects/subject.service';
 
-
 @Component({  
   templateUrl: './book-edit.component.html',
   styleUrls: ['./book-edit.component.css']
@@ -76,15 +75,8 @@ export class BookEditComponent implements OnInit {
 
   onSubmit(): void {        
     if (this.book) {      
-
-      this.book.authors = [];
-      let existentAuthor = this.allAuthors.find((author: IAuthor) => author.id != null);
-      this.book.authors.push(existentAuthor.id);      
-
-      this.book.subjects = [];
-      let newSubject = this.allSubjects.find((subject: ISubject) => subject.id != null);      
-      this.book.subjects.push(newSubject.id);
-
+      this.setBookAuthor();
+      this.setBookSubject();
       this.bookService.updateBook(this.book);        
     }
   }
@@ -95,15 +87,25 @@ export class BookEditComponent implements OnInit {
     }
   }
 
+  setBookAuthor(): void {
+    if (this.book)
+    {
+      this.book.authors = [];
+      let existentAuthor =  (this.filteredAuthors && this.filteredAuthors.length) ? this.filteredAuthors.find((author: IAuthor) => author.id != null) : this.allAuthors.find((author: IAuthor) => author.id != null);
+      this.book.authors.push(existentAuthor.id);   
+    }
+  }
+
+  setBookSubject(): void {
+    if (this.book)
+    {
+      this.book.subjects = [];
+      let newSubject = (this.filteredSubjects && this.filteredSubjects.length) ? this.filteredSubjects.find((subject: ISubject) => subject.id != null) : this.allSubjects.find((subject: ISubject) => subject.id != null);      
+      this.book.subjects.push(newSubject.id);
+    }
+  }
+
   onBack(): void {
     this.router.navigate(['/books']);
   }  
-
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-
-  onSelectAll(items: any) {
-    console.log(items);
-  }
 }
