@@ -41,5 +41,5 @@ export class BookEditComponent implements OnInit {
 
   onBack(): void {
     this.router.navigate(['/books']);
-  }
+  }  
 }
