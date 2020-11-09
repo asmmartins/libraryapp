@@ -1,0 +1,61 @@
+<div class='card'
+     *ngIf='book'>
+  <div class='card-header'>
+    {{pageTitle + ': ' + book.title}}
+    <button [routerLink]="['/add-books'] " class="btn btn-primary float-right">+</button> 
+  </div>
+
+  <div class='card-body'>
+    <form #bookForm="ngForm"> 
+      <div class="form-group">
+        <label for="title">Nome</label>
+        <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Digite o nome" [(ngModel)]="book.title" [ngModelOptions]="{standalone: true}" #title="ngModel" required maxlength="40">
+        <small id="titleHelp" class="form-text text-muted">Digite o nome do livro.</small>
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+          <smal *ngIf="title.errors.required">Nome é obrigatório</smal>      
+        </div>     
+      </div>
+      <div class="form-group">
+        <label for="publishingCompany">Editora</label>
+        <input type="text" class="form-control" id="publishingCompany" aria-describedby="publishingCompanyHelp" placeholder="Digite a editora" [(ngModel)]="book.publishingCompany" [ngModelOptions]="{standalone: true}" #publishingCompany="ngModel" required maxlength="40">
+        <small id="publishingCompanyHelp" class="form-text text-muted">Digite a editora do livro.</small>
+        <div *ngIf="publishingCompany.invalid && (publishingCompany.dirty || publishingCompany.touched)" class="alert alert-danger">
+          <smal *ngIf="publishingCompany.errors.required">Editora é obrigatória</smal>      
+        </div>     
+      </div>
+      <div class="form-group">
+        <label for="edition">Edição</label>
+        <input type="number" class="form-control" id="edition" aria-describedby="editionHelp" placeholder="Digite a edição" [(ngModel)]="book.edition" [ngModelOptions]="{standalone: true}" #edition="ngModel" required>
+        <small id="editionHelp" class="form-text text-muted">Digite a edição do livro.</small>
+        <div *ngIf="edition.invalid && (edition.dirty || edition.touched)" class="alert alert-danger">
+          <smal *ngIf="edition.errors.required">Edição é obrigatória</smal>      
+        </div>     
+      </div>
+      <div class="form-group">
+        <label for="publicationYear">Ano de publicação</label>
+        <input type="number" class="form-control" id="publicationYear" aria-describedby="publicationYearHelp" placeholder="Digite o ano de publicação" [(ngModel)]="book.publicationYear" [ngModelOptions]="{standalone: true}" #publicationYear="ngModel" required>
+        <small id="publicationYearHelp" class="form-text text-muted">Digite o ano de publicação do livro.</small>
+        <div *ngIf="publicationYear.invalid && (publicationYear.dirty || publicationYear.touched)" class="alert alert-danger">
+          <smal *ngIf="publicationYear.errors.required">Ano de publicação é obrigatório</smal>      
+        </div>     
+      </div>              
+      <div class="form-group">
+        <label for="price">Preço ($)</label>
+        <input type="number" class="form-control" id="price" aria-describedby="priceHelp" placeholder="Digite o preço" [(ngModel)]="book.price" [ngModelOptions]="{standalone: true}" #price="ngModel" required>
+        <small id="priceHelp" class="form-text text-muted">Digite o preço do livro.</small>
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+          <smal *ngIf="price.errors.required">Preço é obrigatório</smal>      
+        </div>     
+      </div> 
+      <button type="button" class="btn btn-primary float-right" (click)="onSubmit()" [disabled]="!(title.valid && publishingCompany.valid && edition.valid && publicationYear.valid && price.valid)">Salvar</button>
+    </form>    
+  </div>
+
+  <div class='card-footer'>
+    <button class='btn btn-outline-secondary'
+            (click)='onBack()'
+            style='width:80px'>
+      <i class='fa fa-chevron-left'></i>
+    </button>
+  </div>
+</div>
