@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { IBook } from './book';
 
@@ -12,7 +13,14 @@ export class BookService {
 
   private bookUrl = 'https://asmlibraryapi.azurewebsites.net/books';
 
-  constructor(private http: HttpClient) { }
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   getBooks(): Observable<IBook[]> {
     return this.http.get<IBook[]>(this.bookUrl)
@@ -22,10 +30,37 @@ export class BookService {
   }
 
   getBook(id: string): Observable<IBook | undefined> {
-    return this.getBooks()
+    return this.http.get<IBook>(`${ this.bookUrl }/${ id }`)
       .pipe(
-        map((books: IBook[]) => books.find(p => p.id === id))
+        catchError(this.handleError)
       );
+  }
+
+  createBook(book: IBook) : void {
+    this.http.post(this.bookUrl, book, this.httpOptions)      
+      .subscribe(  
+        next => this.handleNext(),          
+        catchError(this.handleError)        
+      );
+  }
+
+  updateBook(book: IBook) : void {        
+    this.http.put(`${ this.bookUrl }/${ book.id }`, book, this.httpOptions)
+      .subscribe(    
+        next => this.handleNext(),        
+        catchError(this.handleError)        
+      );
+  }
+
+  removeBook(id: string) : void {
+    this.http.delete(`${ this.bookUrl }/${ id }`)
+      .subscribe(        
+        catchError(this.handleError)
+      );
+  }
+
+  private handleNext() : void { 
+    this.router.navigate(['/books']);
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {    
