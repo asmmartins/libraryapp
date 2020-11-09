@@ -55,6 +55,7 @@ export class AuthorService {
   removeAuthor(id: string) : void {
     this.http.delete(`${ this.authorUrl }/${ id }`)
       .subscribe(        
+        next => this.handleNext(), 
         catchError(this.handleError)
       );
   }

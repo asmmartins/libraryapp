@@ -54,6 +54,7 @@ export class SubjectService {
   removeSubject(id: string) : void {
     this.http.delete(`${ this.subjectUrl }/${ id }`)
       .subscribe(        
+        next => this.handleNext(),      
         catchError(this.handleError)
       );
   }
