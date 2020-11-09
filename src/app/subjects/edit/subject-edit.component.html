@@ -6,8 +6,11 @@
   </div>
 
   <div class='card-body'>
-    <form #subjectForm="ngForm"> 
-      <div class="form-group">
+    <div class="form-group">
+      <button type="button" class="btn btn-danger float-right" (click)="remove()">x</button>
+    </div>
+    <form #subjectForm="ngForm">       
+      <div class="form-group">                     
         <label for="description">Descrição</label>
         <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" placeholder="Digite o assunto" [(ngModel)]="subject.description" [ngModelOptions]="{standalone: true}" #description="ngModel" required maxlength="20">
         <small id="descriptionHelp" class="form-text text-muted">Digite o assunto do livro.</small>

@@ -5,8 +5,11 @@
     <button [routerLink]="['/add-authors'] " class="btn btn-primary float-right">+</button> 
   </div>
 
-  <div class='card-body'>
-    <form #authorForm="ngForm"> 
+  <div class='card-body'>    
+    <div class="form-group">
+      <button type="button" class="btn btn-danger float-right" (click)="remove()">x</button>
+    </div>
+    <form #authorForm="ngForm">       
       <div class="form-group">
         <label for="name">Nome</label>
         <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Digite o nome" [(ngModel)]="author.name" [ngModelOptions]="{standalone: true}" #name="ngModel" required maxlength="40">

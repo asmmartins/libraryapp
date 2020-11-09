@@ -40,6 +40,12 @@ export class SubjectEditComponent implements OnInit {
     }
   }
 
+  remove(): void {        
+    if (this.subject) {                              
+      this.subjectService.removeSubject(this.subject.id);        
+    }
+  }
+
   onBack(): void {
     this.router.navigate(['/subjects']);
   }

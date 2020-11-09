@@ -39,6 +39,12 @@ export class AuthorEditComponent implements OnInit {
     }
   }
 
+  remove(): void {        
+    if (this.author) {                              
+      this.authorService.removeAuthor(this.author.id);        
+    }
+  }
+
   onBack(): void {
     this.router.navigate(['/authors']);
   }
