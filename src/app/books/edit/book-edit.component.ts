@@ -58,11 +58,11 @@ export class BookEditComponent implements OnInit {
                 
                 let totalAuthors = this.book.bookAuthors.length;                
                 for(let i = 0; i < totalAuthors; i++)                 
-                  this.filteredAuthors[i] = this.allAuthors.find((author: IAuthor) => author.id == this.book.bookAuthors[i]["authorId"]);
+                  this.filteredAuthors.push(this.allAuthors.find((author: IAuthor) => author.id == this.book.bookAuthors[i]["authorId"]));
 
                 let totalSubjects = this.book.bookSubjects.length;                
                 for(let i = 0; i < totalSubjects; i++)                         
-                  this.filteredSubjects[i] = this.allSubjects.find((subject: ISubject) => subject.id == this.book.bookSubjects[i]["subjectId"]);                                                
+                  this.filteredSubjects.push(this.allSubjects.find((subject: ISubject) => subject.id == this.book.bookSubjects[i]["subjectId"]));                                                
               },
               error: err => this.errorMessage = err
             });
@@ -75,7 +75,16 @@ export class BookEditComponent implements OnInit {
   }
 
   onSubmit(): void {        
-    if (this.book) {                              
+    if (this.book) {      
+
+      this.book.authors = [];
+      let existentAuthor = this.allAuthors.find((author: IAuthor) => author.id != null);
+      this.book.authors.push(existentAuthor.id);      
+
+      this.book.subjects = [];
+      let newSubject = this.allSubjects.find((subject: ISubject) => subject.id != null);      
+      this.book.subjects.push(newSubject.id);
+
       this.bookService.updateBook(this.book);        
     }
   }
