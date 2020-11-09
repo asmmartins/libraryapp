@@ -39,6 +39,12 @@ export class BookEditComponent implements OnInit {
     }
   }
 
+  remove(): void {        
+    if (this.book) {                              
+      this.bookService.removeBook(this.book.id);        
+    }
+  }
+
   onBack(): void {
     this.router.navigate(['/books']);
   }  

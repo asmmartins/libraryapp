@@ -55,6 +55,7 @@ export class BookService {
   removeBook(id: string) : void {
     this.http.delete(`${ this.bookUrl }/${ id }`)
       .subscribe(        
+        next => this.handleNext(), 
         catchError(this.handleError)
       );
   }
