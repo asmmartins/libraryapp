@@ -49,7 +49,39 @@
         <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
           <smal *ngIf="price.errors.required">Preço é obrigatório</smal>      
         </div>     
-      </div>          
+      </div>
+      <div class="form-group">
+        <div class='table-responsive'>
+          <table class='table' *ngIf='filteredAuthors && filteredAuthors.length'>
+            <thead>
+              <tr>            
+                <th>Autor</th>              
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let bookAuthor of filteredAuthors'>                          
+                <td>{{ bookAuthor.name }}</td>           
+              </tr>
+            </tbody>
+          </table>
+        </div>  
+      </div>
+      <div class="form-group">
+        <div class='table-responsive'>
+          <table class='table' *ngIf='filteredSubjects && filteredSubjects.length'>
+            <thead>
+              <tr>            
+                <th>Assunto</th>              
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let bookSubject of filteredSubjects'>                          
+                <td>{{ bookSubject.description }}</td>           
+              </tr>
+            </tbody>
+          </table>
+        </div>  
+      </div>            
       <button type="button" class="btn btn-primary float-right" (click)="onSubmit()" [disabled]="!(title.valid && publishingCompany.valid && edition.valid && publicationYear.valid && price.valid)">Salvar</button>
     </form>    
   </div>

@@ -36,7 +36,7 @@ export class BookEditComponent implements OnInit {
   ngOnInit(): void {    
     const id = this.route.snapshot.paramMap.get('id');    
     if (id) {            
-      this.getBook(id);            
+      this.getBook(id);         
     }
   }
 
@@ -89,4 +89,12 @@ export class BookEditComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['/books']);
   }  
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+
+  onSelectAll(items: any) {
+    console.log(items);
+  }
 }
