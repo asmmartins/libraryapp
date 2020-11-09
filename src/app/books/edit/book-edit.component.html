@@ -49,7 +49,7 @@
         <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
           <smal *ngIf="price.errors.required">Preço é obrigatório</smal>      
         </div>     
-      </div> 
+      </div>          
       <button type="button" class="btn btn-primary float-right" (click)="onSubmit()" [disabled]="!(title.valid && publishingCompany.valid && edition.valid && publicationYear.valid && price.valid)">Salvar</button>
     </form>    
   </div>
