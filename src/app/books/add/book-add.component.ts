@@ -19,7 +19,7 @@ export class BookAddComponent implements OnInit {
   }
 
   ngOnInit(): void {  
-    this.book = { "id": null, "title": null, "publishingCompany": null, "edition":0, "publicationYear": null, "price": 0 };  
+    this.book = { "id": null, "title": null, "publishingCompany": null, "edition":0, "publicationYear": null, "price": 0, "authors": [], "subjects": [], "bookAuthors": [], "bookSubjects": [] };  
   }  
 
   onSubmit(): void {        

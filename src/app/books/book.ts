@@ -5,4 +5,8 @@ export interface IBook {
   edition: number;
   publicationYear: string;  
   price: number;
+  authors: any[];
+  bookAuthors: any[];
+  subjects: any[];
+  bookSubjects: any[];
 }

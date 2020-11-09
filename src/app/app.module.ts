@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
@@ -25,7 +26,8 @@ import { AuthorBookModule } from './authors-books/authorbook.module';
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),      
-    FormsModule,     
+    FormsModule,
+    NgMultiSelectDropDownModule,    
     BookModule,
     AuthorModule,
     SubjectModule,
